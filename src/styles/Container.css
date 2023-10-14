@@ -1,22 +1,78 @@
-.container{
+.container {
+    width: 100%;
+    max-width: 80rem;
+    height: 80.1875rem;
     border-radius: 7.375rem;
     background: #1D1D1D;
     box-shadow: 0px 27px 20px 0px rgba(0, 0, 0, 0.25);
-    width: 210.8125rem;
-    height: 137.1875rem;
-    flex-shrink: 0;
+    position: relative; /* Ajouté pour permettre le positionnement absolu des sous-éléments */
+    padding-left: 5%; /* Espacement ajouté ici pour décaler tout son contenu */
+    padding-top: 5%;
+    overflow: hidden;
+}
+
+.titleJobs {
+    color: #D375FF;
+    font-family: 'Kanit', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    float: none;
 }
 
 
-.titleJobs{
-    color: #D375FF;
-    width: 105.375rem;
-    height: 11rem;
-    flex-shrink: 0;
+.subtitle {
+    color: #DDD;
     font-family: 'Kanit', sans-serif;
-    font-size: 2rem;
-    font-style: normal;
+    font-size: 1.7rem;
     font-weight: 600;
-    line-height: normal;
     letter-spacing: 0.15rem;
+    margin-top: 1rem;
+    margin-bottom: 8%;
+}
+
+
+.description {
+    margin-left: 70%;
+    color: #FFF;
+    font-family: 'Kanit', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    width: 86rem;
+}
+.centered-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .title {
+        font-size: 3rem;
+        width: 80%;
+        height: auto;
+    }
+
+    .subtitle {
+        font-size: 3rem;
+        width: 80%;
+        height: auto;
+    }
+    .container {
+        width: 100%;
+        height: auto;
+        border-radius: 2rem;
+    }
+}
+
+
+
+
+
+@media (max-width: 768px) {
+
 }

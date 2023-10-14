@@ -6,7 +6,8 @@ const Body = () => {
         <div>
             <div className="title">Bour<br/>
             Valentin</div>
-            <div className="description">Développeur, photographe, designer</div>
+            <div className="descriptionTitle">Développeur, photographe, designer</div>
+            <br></br><br></br>
         </div>
     );
 };
