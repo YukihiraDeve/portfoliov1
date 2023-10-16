@@ -1,8 +1,8 @@
 import React from 'react';
-import Bulles from '../components/Bulles'
 import Header from '../components/Header'
 import Body from '../components/Body'
 import Container from '../components/Container';
+import Langage from '../components/Langage';
 
 const Home = () => {
     return (
@@ -10,6 +10,7 @@ const Home = () => {
             <Header />
             <Body/>
             <Container />
+            <Langage />
         </div>
     );
 };

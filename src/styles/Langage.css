@@ -1,0 +1,14 @@
+canvas {
+    z-index: 0; /* Mettre le canvas en arrière-plan */
+}
+
+.Langage{
+    color: #FFF;
+    font-family: 'Kanit', sans-serif;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-left: 5%;
+    padding-top: 5%;
+}

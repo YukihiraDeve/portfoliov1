@@ -1,20 +1,26 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
+import python from '../assets/Python.jpg';
+import LangageC from '../assets/LangageC.jpg';
+import js from '../assets/JS.jpg';
+import html from '../assets/html.jpg';
+import php from '../assets/php.jpg';
 
 const bullePositions = [
-    { x: 600, y: 540, size: 420 }, // Bulle centrale la plus grande
-    { x: 450, y: 400, size: 260 }, // Bulle à gauche de la bulle centrale
-    { x: 800, y: 400, size: 210 }, // Bulle à droite de la bulle centrale
-    { x: 360, y: 230, size: 140 }, // Bulle en haut à gauche
-    { x: 960, y: 230, size: 140 }, // Bulle en haut à droite
-    { x: 240, y: 620, size: 140 }, // Bulle en bas à gauche
-    { x: 1080, y: 620, size: 140 }, // Bulle en bas à droite
-    { x: 760, y: 250, size: 80 },  // Petite bulle juste au-dessus de la bulle centrale
-    { x: 670, y: 290, size: 60 }
+    { x: 800, y: 300, size: 220, image: js },//Centre
+    { x: 650, y: 200, size: 120, image: LangageC },
+    { x: 1000, y: 350, size: 160, image: python },
+    { x: 950, y: 550, size: 200, image: js },
+    { x: 620, y: 450, size: 150, image: html },
+    { x: 950, y: 200, size: 100, image: php }
+
+
 ];
+var check = 0;
 
 const Bulles = () => {
     const myP5 = useRef();
+    const images = {};
 
     useEffect(() => {
         new p5(sketch, myP5.current);
@@ -23,15 +29,37 @@ const Bulles = () => {
     const sketch = (p) => {
         let bulles = [];
 
-        p.setup = () => {
-            p.createCanvas(p.windowWidth, p.windowHeight);
+        p.preload = () => {
             for (let position of bullePositions) {
-                bulles.push(new Bulle(p, position.x, position.y, position.size));
+                if (position.image) {
+                    images[position.image] = p.loadImage(position.image);
+                }
             }
         };
 
+        p.setup = () => {
+            p.createCanvas(p.windowWidth, p.windowHeight);
+            p.imageMode(p.CENTER); // Set image mode here
+            
+            for (let position of bullePositions) {
+                let img = position.image ? images[position.image] : null;
+                bulles.push(new Bulle(p, position.x, position.y, position.size, img));
+            }
+        };
+
+        p.windowResized = () => {
+            p.resizeCanvas(p.windowWidth, p.windowHeight);
+        };
+
         p.draw = () => {
-            p.background(0);
+            p.background('#292929');
+
+            // Set shadow for all bubbles here
+            p.drawingContext.shadowOffsetX = 0;
+            p.drawingContext.shadowOffsetY = 5;
+            p.drawingContext.shadowBlur = 15;
+            p.drawingContext.shadowColor = '#1D1D1D';
+
             handleCollisions();
             displayBulles();
         };
@@ -52,15 +80,25 @@ const Bulles = () => {
         };
 
         class Bulle {
-            constructor(p, x, y, size) {
+            constructor(p, x, y, size, img) {
                 this.p = p;
                 this.x = x;
                 this.y = y;
                 this.size = size;
+                this.img = img;
                 this.xSpeed = 0;
                 this.ySpeed = 0;
                 this.lastMoved = p.millis();
                 this.initialPos = { x: x, y: y };
+
+                if (this.img) {
+                    this.maskImg = p.createGraphics(this.size, this.size);
+                    this.maskImg.fill(255);
+                    this.maskImg.noStroke();
+                    this.maskImg.ellipse(this.maskImg.width / 2, this.maskImg.height / 2, this.size);
+                    this.maskedImage = this.img.get(); // Create a copy of the image
+                    this.maskedImage.mask(this.maskImg); // Mask the image once
+                }
             }
 
             move() {
@@ -89,15 +127,23 @@ const Bulles = () => {
                 this.y += this.ySpeed;
 
                 if (this.p.millis() - this.lastMoved > 3000) {
-                    this.x += (this.initialPos.x - this.x) * 0.05;
-                    this.y += (this.initialPos.y - this.y) * 0.05;
+                    this.x += (this.initialPos.x - this.x) * 0.09;
+                    this.y += (this.initialPos.y - this.y) * 0.09;
                 }
+
             }
 
+            
+
             display() {
-                this.p.fill(255);
-                this.p.noStroke();
-                this.p.ellipse(this.x, this.y, this.size);
+                p.fill(255);
+                p.noStroke();
+                p.ellipse(this.x, this.y, this.size);
+
+                if (this.maskedImage) {
+                    p.image(this.maskedImage, this.x, this.y, this.size, this.size); // Draw masked image directly
+                }
+            
             }
 
             checkCollision(other) {
