@@ -5,20 +5,35 @@ import LangageC from '../assets/LangageC.jpg';
 import js from '../assets/JS.jpg';
 import html from '../assets/html.jpg';
 import php from '../assets/php.jpg';
+import Android from '../assets/Android.jpg'
+import csharp from "../assets/csharp.jpg"
+import java from "../assets/Java.jpg"
+import node from "../assets/node.jpg"
+import figma from "../assets/figma.jpg"
+import photoshop from "../assets/photoshop.jpg"
+import solidity from "../assets/solidity.jpg"
+import swift from "../assets/swift.jpg"
 
 const VIRTUAL_WIDTH = 1920;
 const VIRTUAL_HEIGHT = 1080;
 
 const bullePositions = [
 
-    { x: 960, y: 540, size: 220, image: js }, 
-    { x: 900, y: 550, size: 220, image: js }, 
-    // { x: 0.5, y: 0.5, size: 220, image: js },//Centre
-    // { x: 0.6, y: 0.35, size: 120, image: LangageC },
-    // { x: 0.39, y: 0.35, size: 160, image: python },
-    // { x: 0.60, y: 0.72, size: 200, image: js },
-    // { x: 0.68, y: 0.53, size: 150, image: html },
-    // { x: 0.49, y: 0.72, size: 100, image: php }
+    { x: 960, y: 540, size: 220, image: html }, //centre
+    { x: 281, y: 258, size: 150, image: node },
+    { x: 320, y: 619, size: 158, image: Android},
+    { x: 572, y: 270, size: 70, image: LangageC },
+    { x: 517, y: 361, size: 250, image: js },
+    { x: 669, y: 129, size: 177, image: java },
+    { x: 850, y: 440, size: 110, image: php },
+    { x: 779, y: 598, size: 236, image: python },
+    { x: 1125, y: 264, size: 85, image: csharp },
+    { x: 1100, y: 250, size: 110, image: swift },
+    { x: 1200, y: 700, size: 150, image: photoshop },
+    { x: 350, y: 450, size: 120, image: solidity }
+
+
+
 
 
 ];
