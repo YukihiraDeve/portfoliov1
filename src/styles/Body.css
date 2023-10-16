@@ -5,10 +5,11 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
+    
 }
 
 .title {
-    padding-top: 20%;
+    padding-top: 5%;
    font-family: 'Kanit', sans-serif;
     font-size: 5.5rem;
     font-style: normal;

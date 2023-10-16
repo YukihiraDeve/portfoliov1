@@ -12,3 +12,9 @@ canvas {
     padding-left: 5%;
     padding-top: 5%;
 }
+
+.bubbles {
+    position: absolute;
+    bottom: 10px;  /* Ajustez selon vos besoins */
+    left: 10px; 
+}

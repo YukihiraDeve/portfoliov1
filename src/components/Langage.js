@@ -7,7 +7,10 @@ const Langage = () => {
     return (
         <div>
             <div className='Langage'>Outils / Langages</div>
-            <Bulles />
+            <div className="bubbles">
+               <Bulles />
+            </div>
+    
         </div>
     );
 };
