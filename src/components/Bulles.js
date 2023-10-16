@@ -6,13 +6,19 @@ import js from '../assets/JS.jpg';
 import html from '../assets/html.jpg';
 import php from '../assets/php.jpg';
 
+const VIRTUAL_WIDTH = 1920;
+const VIRTUAL_HEIGHT = 1080;
+
 const bullePositions = [
-    { x: 800, y: 300, size: 220, image: js },//Centre
-    { x: 650, y: 200, size: 120, image: LangageC },
-    { x: 1000, y: 350, size: 160, image: python },
-    { x: 950, y: 550, size: 200, image: js },
-    { x: 620, y: 450, size: 150, image: html },
-    { x: 950, y: 200, size: 100, image: php }
+
+    { x: 960, y: 540, size: 220, image: js }, 
+    { x: 900, y: 550, size: 220, image: js }, 
+    // { x: 0.5, y: 0.5, size: 220, image: js },//Centre
+    // { x: 0.6, y: 0.35, size: 120, image: LangageC },
+    // { x: 0.39, y: 0.35, size: 160, image: python },
+    // { x: 0.60, y: 0.72, size: 200, image: js },
+    // { x: 0.68, y: 0.53, size: 150, image: html },
+    // { x: 0.49, y: 0.72, size: 100, image: php }
 
 
 ];
@@ -27,6 +33,8 @@ const Bulles = () => {
     }, []);
 
     const sketch = (p) => {
+        let scaleFactor;
+
         let bulles = [];
 
         p.preload = () => {
@@ -38,17 +46,34 @@ const Bulles = () => {
         };
 
         p.setup = () => {
-            p.createCanvas(p.windowWidth, p.windowHeight);
-            p.imageMode(p.CENTER); // Set image mode here
-            
-            for (let position of bullePositions) {
-                let img = position.image ? images[position.image] : null;
-                bulles.push(new Bulle(p, position.x, position.y, position.size, img));
+            if (check == 0){
+                check = 1;
+                p.createCanvas(p.windowWidth, p.windowHeight);
+                scaleFactor = p.windowWidth / VIRTUAL_WIDTH;
+                p.imageMode(p.CENTER);
+                initializeBulles(); 
+        
             }
+
+
         };
+
+
+        const initializeBulles = () => {
+            bulles = []; // Réinitialiser le tableau des bulles
+            for (let position of bullePositions) {
+                const x = position.x * scaleFactor;
+                const y = position.y * scaleFactor;
+                let img = position.image ? images[position.image] : null;
+                bulles.push(new Bulle(p, x, y, position.size * scaleFactor, img));
+            }
+        }
+
 
         p.windowResized = () => {
             p.resizeCanvas(p.windowWidth, p.windowHeight);
+            scaleFactor = p.windowWidth / VIRTUAL_WIDTH;  // Mettre à jour le facteur d'échelle
+            initializeBulles(); // Réinitialiser les bulles lors du redimensionnement
         };
 
         p.draw = () => {
