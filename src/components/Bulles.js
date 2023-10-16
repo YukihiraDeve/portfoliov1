@@ -13,24 +13,28 @@ import figma from "../assets/figma.jpg"
 import photoshop from "../assets/photoshop.jpg"
 import solidity from "../assets/solidity.jpg"
 import swift from "../assets/swift.jpg"
+import docker from "../assets/docker.jpg"
 
 const VIRTUAL_WIDTH = 1920;
 const VIRTUAL_HEIGHT = 1080;
 
 const bullePositions = [
 
-    { x: 960, y: 540, size: 220, image: html }, //centre
-    { x: 281, y: 258, size: 150, image: node },
-    { x: 320, y: 619, size: 158, image: Android},
-    { x: 572, y: 270, size: 70, image: LangageC },
-    { x: 517, y: 361, size: 250, image: js },
-    { x: 669, y: 129, size: 177, image: java },
-    { x: 850, y: 440, size: 110, image: php },
-    { x: 779, y: 598, size: 236, image: python },
-    { x: 1125, y: 264, size: 85, image: csharp },
-    { x: 1100, y: 250, size: 110, image: swift },
-    { x: 1200, y: 700, size: 150, image: photoshop },
-    { x: 350, y: 450, size: 120, image: solidity }
+    { x: 960, y: 640, size: 220, image: html }, //centre
+    { x: 614, y: 358, size: 200, image: node },
+    { x: 694, y: 650, size: 158, image: Android},
+    { x: 772, y: 450, size: 150, image: LangageC },
+    { x: 882, y: 500, size: 350, image: js },
+    { x: 850, y: 540, size: 177, image: java },
+    { x: 772, y: 827, size: 110, image: php },
+    { x: 994, y: 418, size: 236, image: python },
+    { x: 960, y: 640, size: 105, image: csharp },
+    { x: 960, y: 318, size: 110, image: swift },
+    { x: 1210, y: 305, size: 150, image: photoshop },
+    { x: 1329, y: 437, size: 120, image: solidity },
+    { x: 1338, y: 640, size: 120, image: figma },
+    { x: 550, y: 440, size: 120, image: docker },
+    { x: 1338, y: 640, size: 120, image: figma },
 
 
 
@@ -66,8 +70,8 @@ const Bulles = () => {
                 p.createCanvas(p.windowWidth, p.windowHeight);
                 scaleFactor = p.windowWidth / VIRTUAL_WIDTH;
                 p.imageMode(p.CENTER);
+
                 initializeBulles(); 
-        
             }
 
 
@@ -86,9 +90,18 @@ const Bulles = () => {
 
 
         p.windowResized = () => {
+            const oldScaleFactor = scaleFactor;
             p.resizeCanvas(p.windowWidth, p.windowHeight);
             scaleFactor = p.windowWidth / VIRTUAL_WIDTH;  // Mettre à jour le facteur d'échelle
-            initializeBulles(); // Réinitialiser les bulles lors du redimensionnement
+        
+            // Ajuster les positions et tailles des bulles
+            for (let bulle of bulles) {
+                bulle.x = (bulle.x / oldScaleFactor) * scaleFactor;
+                bulle.y = (bulle.y / oldScaleFactor) * scaleFactor;
+                bulle.size = (bulle.size / oldScaleFactor) * scaleFactor;
+                bulle.initialPos.x = (bulle.initialPos.x / oldScaleFactor) * scaleFactor;
+                bulle.initialPos.y = (bulle.initialPos.y / oldScaleFactor) * scaleFactor;
+            } // Réinitialiser les bulles lors du redimensionnement
         };
 
         p.draw = () => {

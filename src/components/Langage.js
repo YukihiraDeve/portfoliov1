@@ -6,7 +6,7 @@ import "../styles/Langage.css"
 const Langage = () => {
     return (
         <div>
-            <div className='Langage'>Quelque langage</div>
+            <div className='Langage'>Outils / Langages</div>
             <Bulles />
         </div>
     );

@@ -1,13 +1,16 @@
 .container {
-    display: flex; 
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divise l'espace en deux colonnes égales */
+    grid-gap: 10px;
+
     width: 100%;
     max-width: 80rem;
-    height: 30.1875rem;
+    height: 50.1875rem;
     border-radius: 7.375rem;
     background: #1D1D1D;
     box-shadow: 0px 27px 20px 0px rgba(0, 0, 0, 0.25);
     position: relative; /* Ajouté pour permettre le positionnement absolu des sous-éléments */
-    padding-left: 5%; /* Espacement ajouté ici pour décaler tout son contenu */
+    padding-left: 3%; /* Espacement ajouté ici pour décaler tout son contenu */
     padding-top: 5%;
     overflow: hidden;
 }
@@ -15,6 +18,14 @@
 .col {
     flex: 2; /* Divise l'espace disponible entre les deux colonnes */
     padding: 10px; /* Ajoutez un peu d'espace autour du contenu */
+}
+
+
+.job-item {
+    /* Ceci s'applique à chaque paire de titre + sous-titre et description */
+    display: grid;
+    grid-template-rows: auto auto; /* Deux lignes, une pour le titre, une pour le sous-titre */
+    grid-gap: 10px; /* Espacement entre les lignes */
 }
 
 
@@ -26,6 +37,7 @@
     font-weight: 600;
     letter-spacing: 0.15rem;
     float: none;
+    margin-bottom: 0
 }
 
 
@@ -37,6 +49,7 @@
     letter-spacing: 0.15rem;
     margin-top: 1rem;
     margin-bottom: 8%;
+    margin-bottom: 0
 }
 
 
@@ -48,7 +61,7 @@
     font-weight: 300;
     letter-spacing: 0.1rem;
     width: 35rem;
-    padding-bottom: 19%;
+    padding-bottom: 15%;
 }
 
 .centered-container{
