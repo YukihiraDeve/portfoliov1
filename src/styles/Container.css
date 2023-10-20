@@ -1,0 +1,22 @@
+.container{
+    border-radius: 7.375rem;
+    background: #1D1D1D;
+    box-shadow: 0px 27px 20px 0px rgba(0, 0, 0, 0.25);
+    width: 210.8125rem;
+    height: 137.1875rem;
+    flex-shrink: 0;
+}
+
+
+.titleJobs{
+    color: #D375FF;
+    width: 105.375rem;
+    height: 11rem;
+    flex-shrink: 0;
+    font-family: 'Kanit', sans-serif;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.15rem;
+}
